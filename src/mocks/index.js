@@ -4,6 +4,54 @@ import {
     startCase
 } from 'lodash';
 
+const title = () => (
+    startCase(casual.catch_phrase)
+);
+
+var authors = [
+    {
+        first: "Steven",
+        last: "King",
+        titles: ["Scary Stuff", "More Scary Stuff", "Scariest Stuff", title()]
+    },
+    {
+        first: "Arthur",
+        last: "Doyle",
+        titles: ["The Pound Puppies of the Baskervilles", "The Case of the Missing Potato", "The Case of the Spotted Dick", title()]
+    },
+    {
+        first: "Isaac",
+        last: "Asimov",
+        titles: ["Fourth Foundation", "I, Morty", "Once in a Venusian Sun", title()]
+    },
+    {
+        first: "R. L.",
+        last: "Stein",
+        titles: ["Moose Bumps", "Meerkat Street", "Why are You Scared of Me?", title()]
+    },
+    {
+        first: "Barbara",
+        last: "Cartland",
+        titles: ["Kiss Me, I'm Yours", "The Pirate and the Piano Teacher", "Love, Who Needs It?", title()]
+    }
+];
+
+const moreAuthors = () => {
+    const count = 7;
+    var arr = [];
+
+    for (let i = 0; i < count; i++) {
+        arr.push({
+            first: casual.first_name,
+            last: casual.last_name,
+            titles: [title(), title(), title()]
+        })
+    }
+    return arr;
+}
+
+authors = authors.concat(moreAuthors());
+
 class Rowset {
     constructor() {
         this.rowset = casual.book;
@@ -17,11 +65,18 @@ class Rowset {
     }
 }
 
-casual.define('book', () => ({
-    last_name: casual.last_name,
-    title: startCase(casual.catch_phrase),
-    ISBN: new RandExp(/ISBN-\d-\d{3}-\d{5}-\d/)
-        .gen(),
-}))
+casual.define('book', () => {
+    const author = casual.random_element(authors);
+
+    const book = {
+        first_name: author.first,
+        last_name: author.last,
+        title: casual.random_element(author.titles),
+        ISBN: new RandExp(/ISBN-\d-\d{3}-\d{5}-\d/)
+            .gen(),
+    }
+
+    return book;
+});
 
 export default Rowset
