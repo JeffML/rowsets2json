@@ -12,27 +12,32 @@ var authors = [
     {
         first: "Steven",
         last: "King",
-        titles: ["Scary Stuff", "More Scary Stuff", "Scariest Stuff", title()]
+        titles: ["Scary Stuff", "More Scary Stuff", "Scariest Stuff", title()],
+        category: ["suspense", "occult"]
     },
     {
         first: "Arthur",
         last: "Doyle",
-        titles: ["The Pound Puppies of the Baskervilles", "The Case of the Missing Potato", "The Case of the Spotted Dick", title()]
+        titles: ["The Pound Puppies of the Baskervilles", "The Case of the Missing Potato", "The Case of the Spotted Dick", title()],
+        category: ["mystery", "thriller"]
     },
     {
         first: "Isaac",
         last: "Asimov",
-        titles: ["Fourth Foundation", "I, Morty", "Once in a Venusian Sun", title()]
+        titles: ["Fourth Foundation", "I, Morty", "Once in a Venusian Sun", title()],
+        category: ["science fiction", "science", "general interest"]
     },
     {
         first: "R. L.",
         last: "Stein",
-        titles: ["Moose Bumps", "Meerkat Street", "Why are You Scared of Me?", title()]
+        titles: ["Moose Bumps", "Meerkat Street", "Why are You Scared of Me?", title()],
+        category: ["childrens books", "suspense", "thriller"]
     },
     {
         first: "Barbara",
         last: "Cartland",
-        titles: ["Kiss Me, I'm Yours", "The Pirate and the Piano Teacher", "Love, Who Needs It?", title()]
+        titles: ["Kiss Me, I'm Yours", "The Pirate and the Piano Teacher", "Love, Who Needs It?", title()],
+        category: ["romance", "thriller"]
     }
 ];
 
@@ -44,7 +49,8 @@ const moreAuthors = () => {
         arr.push({
             first: casual.first_name,
             last: casual.last_name,
-            titles: [title(), title(), title()]
+            titles: [title(), title(), title()],
+            category: ["management", "engineering", "reference"]
         })
     }
     return arr;
@@ -72,8 +78,7 @@ casual.define('book', () => {
         first_name: author.first,
         last_name: author.last,
         title: casual.random_element(author.titles),
-        ISBN: new RandExp(/ISBN-\d-\d{3}-\d{5}-\d/)
-            .gen(),
+        category: casual.random_element(author.category)
     }
 
     return book;
