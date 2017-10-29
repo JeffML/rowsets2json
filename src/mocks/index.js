@@ -18,7 +18,7 @@ var authors = [
     {
         first: "Arthur",
         last: "Doyle",
-        titles: ["The Pound Puppies of the Baskervilles", "The Case of the Missing Potato", "The Case of the Spotted Dick", title()],
+        titles: ["The Pound Puppies of the Baskervilles", "The Case of the Mashed Potato", "The Case of the Spotted Dick", title()],
         category: ["mystery", "thriller"]
     },
     {

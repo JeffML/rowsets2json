@@ -5,7 +5,8 @@ import {
 } from './sql-db';
 
 import {
-    handrolled
+    handrolled,
+    treeized,
 } from './methods'
 
 const dataset = new Array(100)
@@ -21,7 +22,18 @@ const resultSet = selectBooks({
     }
 })
 
-var rs = handrolled(resultSet)
-console.log(JSON.stringify({
-    handrolled: rs
-}, null, 4));
+const useMethod = process.env.METHOD || 'treeized'
+
+if (useMethod === 'handrolled') {
+    var rs = handrolled(resultSet)
+    console.log(JSON.stringify({
+        handrolled: rs
+    }, null, 4));
+}
+
+if (useMethod === 'treeized') {
+    var rs = treeized(resultSet)
+    console.log(JSON.stringify({
+        treeized: rs
+    }, null, 4));
+}

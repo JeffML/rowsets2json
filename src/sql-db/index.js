@@ -67,9 +67,6 @@ const selectBooks = (options) => {
                  `;
     }
 
-    console.log({
-        query
-    })
     return alasql(
         query
     )
