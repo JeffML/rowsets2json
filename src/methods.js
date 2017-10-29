@@ -34,7 +34,7 @@ const treeized = rs => {
     const seed = rs.map(r => ({
         name: [r.last_name, r.first_name].join(', '),
         'categories:type': r.category,
-        'categories:titles': r.title
+        'categories:titles:name': r.title
     }))
 
     authors.grow(seed);
