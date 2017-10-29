@@ -2,12 +2,12 @@ import alasql from 'alasql';
 
 alasql(
     `CREATE TABLE author
-        (id INT PRIMARY KEY IDENTITY,
+        (id INT PRIMARY KEY AUTO_INCREMENT,
         first_name STRING,
         last_name STRING);
 
     CREATE TABLE book
-        (id INT PRIMARY KEY IDENTITY,
+        (id INT PRIMARY KEY AUTO_INCREMENT,
         author INT REFERENCES author (id),
         title STRING,
         category STRING);
@@ -43,6 +43,39 @@ const addEntities = (dataset) => {
     })
 };
 
+const selectBooks = (options) => {
+    options = options || {}
+    var query;
+    const whereCategory = options.category ? `AND category = '${options.category}'` : ``
+
+    if (!options.author) {
+        query =
+            `       SELECT title, category
+                    FROM book
+                    WHERE 1
+                    ${whereCategory}
+                    `;
+    } else {
+        const whereName = options.author.last_name ? `AND last_name = '${options.author.last_name}'` : ``
+        query =
+            `    SELECT title, category, first_name, last_name
+                 FROM book
+                 JOIN author ON author.id = book.author
+                 WHERE 1
+                 ${whereCategory}
+                 ${whereName}
+                 `;
+    }
+
+    console.log({
+        query
+    })
+    return alasql(
+        query
+    )
+}
+
 export {
-    addEntities
+    addEntities,
+    selectBooks
 }

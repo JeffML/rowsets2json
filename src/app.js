@@ -1,7 +1,12 @@
 import Rowset from './mocks';
 import {
-    addEntities
+    addEntities,
+    selectBooks
 } from './sql-db';
+
+import {
+    handrolled
+} from './methods'
 
 const dataset = new Array(100)
     .fill()
@@ -9,3 +14,14 @@ const dataset = new Array(100)
         .getRowSetObject());
 
 addEntities(dataset)
+
+const resultSet = selectBooks({
+    author: {
+        // last_name: "Asimov"
+    }
+})
+
+var rs = handrolled(resultSet)
+console.log(JSON.stringify({
+    handrolled: rs
+}, null, 4));
