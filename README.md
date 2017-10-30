@@ -1,19 +1,17 @@
-# Posts and Authors example from graphql-tools docs
+# Source code for "Spreadsheets and Rowsets Getting You Down?"
 
-
-
-This project was created with [Apollo Launchpad](https://launchpad.graphql.com)
-
-You can see the original pad at [https://launchpad.graphql.com/1jzxrj179](https://launchpad.graphql.com/1jzxrj179)
 
 ### Quick start guide
 
 ```bash
 npm install
 
+// windows
+set METHOD=[handrolled|**treeized**|treeizedReduced]
+// linux
+export METHOD=...
+
 npm start
 ```
 
-Happy hacking!
-
-The Apollo team :)
+New data is generated each run, and results of operations dumped to the console.
