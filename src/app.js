@@ -41,15 +41,13 @@ if (useMethod === 'treeized') {
 if (useMethod === 'treeizedReduced') {
     var rs = treeized(resultSet)
 
-    rs = rs.map((r, k) => ({}[k] = r.categories))
-        .forEach(r => {
-            r.categories = r.categories.reduce((m, c) => {
-                m[c.type] = {
-                    titles: c.titles.map(t => t.name)
-                }
-                return m;
-            }, {})
-        });
+    rs = rs.map((r, k) => ({}[k] =
+        r.categories.reduce((m, c) => {
+            m[c.type] = {
+                titles: c.titles.map(t => t.name)
+            }
+            return m;
+        }, {})));
 
     console.log(JSON.stringify({
         treeizedReduced: rs
